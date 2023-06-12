@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "855b111f-2c2a-4deb-ab84-9459bfcc7176",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://www.thunderclient.com/welcome",
+    "url": "https://www.thunderclient.com/welcome",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-05-14T13:55:50.424Z",
+    "modified": "2023-05-14T13:55:50.424Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "27a5a4b3-98c1-4d7c-bce0-23596aeb6fd3",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{base_url}}/admin",
+    "url": "{{base_url}}/admin",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-06-04T18:09:37.899Z",
+    "modified": "2023-06-04T18:09:53.189Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]

@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+info:
+  application:
+    name: Spring Sample Application
+    description: This is my first spring boot application
+    version: 1.0.0
+servlet:
+  multipart:
+    max-file-size: 10MB
+    max-request-size: 10MB

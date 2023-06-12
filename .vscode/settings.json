@@ -1,0 +1,27 @@
+{
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.debug.settings.hotCodeReplace": "auto",
+  "boot-java.change-detection.on": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    // "editor.wordWrap": "wordWrapColumn",
+    "editor.wrappingIndent": "same",
+    "editor.wordWrapColumn": 200
+  },
+  "postman.telemetry.enabled": false,
+  // XML
+  "xml.format.closingBracketNewLine": true,
+  "xml.format.enforceQuoteStyle": "preferred",
+  "xml.format.joinContentLines": true,
+  "xml.format.preserveAttributeLineBreaks": true,
+  "xml.format.maxLineWidth": 180,
+  "xml.format.splitAttributes": false,
+  "xml.format.xsiSchemaLocationSplit": "onPair",
+  "xml.format.splitAttributesIndentSize": 1,
+  "java.format.settings.url": "~/.vscode/eclipse-java-google-style.xml",
+  "maven.view": "flat",
+  "java.debug.settings.onBuildFailureProceed": true,
+  "terminal.integrated.scrollback": 1000000,
+}

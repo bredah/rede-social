@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "debug",
+			"type": "shell",
+			"command": "./mvnw -pl :social-network-web spring-boot:run -Dspring-boot.run.profiles=dev",
+			"group": "build"
+		},
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "mvn clean compile",
+			"group": "build"
+		},
+	]
+}

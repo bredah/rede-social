@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "b51a1e7d-8cf4-4ca0-b9ae-2e862be42ae4",
+    "name": "dev",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2023-05-14T13:58:50.913Z",
+    "modified": "2023-05-14T13:58:50.913Z",
+    "data": [
+      {
+        "name": "base_url",
+        "value": "http://localhost:8080"
+      },
+      {
+        "name": "mensagemId",
+        "value": "ea8cb4c9-1979-43fd-b1d0-66596ffd59bd"
+      }
+    ]
+  },
+  {
+    "_id": "7a0207fe-87aa-4fdd-8f93-3ad3e24b6747",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -2,
+    "created": "2023-05-22T23:55:11.410Z",
+    "modified": "2023-05-22T23:55:11.410Z",
+    "data": [
+      {
+        "name": "base_url",
+        "value": ""
+      },
+      {
+        "name": "mensagemId",
+        "value": ""
+      }
+    ],
+    "envFile": "../../.env"
+  },
+  {
+    "_id": "31ca7668-b27a-4593-983e-92c55a8f3455",
+    "name": "prod",
+    "default": false,
+    "sortNum": 15000,
+    "created": "2023-05-28T18:51:11.886Z",
+    "modified": "2023-05-28T18:51:11.886Z",
+    "data": [
+      {
+        "name": "base_url",
+        "value": "https://localhost:8443"
+      }
+    ]
+  }
+]

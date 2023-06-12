@@ -1,0 +1,44 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "RedeSocialApplication",
+      "request": "launch",
+      "mainClass": "com.breda.redesocial.RedeSocialApplication",
+      "projectName": "rede-social"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Attach by Process ID)",
+      "request": "attach",
+      "processId": "${command:PickJavaProcess}"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Attach)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot :: social-network-web",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.bredah.web.WebApplication",
+      "projectName": "social-network-web",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ConfigurationServiceApplication<social-network-config>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.bredah.config.ConfigurationServiceApplication",
+      "projectName": "social-network-config",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

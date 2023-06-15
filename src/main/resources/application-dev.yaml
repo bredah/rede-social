@@ -18,12 +18,12 @@ logging:
   level:
     web: DEBUG
     root: INFO
-    org.springframework: INFO
-    org.hibernate.SQL: DEBUG
-    org.springframework.transaction: DEBUG
-    org.hibernate.type.descriptor.sql: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
-    org.springframework.security: DEBUG
+    "[org.springframework]": INFO
+    "[org.hibernate.SQL]": DEBUG
+    "[org.springframework.transaction]": DEBUG
+    "[org.hibernate.type.descriptor.sql]": DEBUG
+    "[org.hibernate.type.descriptor.sql.BasicBinder]": DEBUG
+    "[org.springframework.security]": DEBUG
 
 spring:
   datasource:
@@ -32,24 +32,15 @@ spring:
     password:
     driverClassName: org.h2.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_sql: true
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
-    generate-ddl: true
+      ddl-auto: create-drop
+    show-sql: true
     properties:
       hibernate:
-        globally_quoted_identifiers: true
-    sql:
-      init:
-        mode: always
+        "[format_sql]": true
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console:
       enabled: true
@@ -61,6 +52,7 @@ spring:
       name: admin
       password: admin
       roles: admin
+      
 jwt:
-  secret: chave_secreta
+  secret: 249661272EDA399FB22625313675296B7EC36A5BF667B14F3AC80BE65BDEE748
   expiration: 86400 # Duração da expiração em segundos (24 horas)

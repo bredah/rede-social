@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.breda.redesocial.dto.MensagemRequest;
 import com.breda.redesocial.exception.MensagemNotFoundException;
 import com.breda.redesocial.model.Mensagem;
 import com.breda.redesocial.repository.MensagemRepository;
@@ -18,9 +19,21 @@ public class MensagemServiceImpl implements MensagemService {
   @Autowired
   private MensagemRepository mensagemRepository;
 
+  @Autowired
+  private AuthenticationService authenticationService;
+
+  @Autowired
+  private UsuarioService usuarioService;
+
   @Override
-  public Mensagem criarMensagem(Mensagem mensagem) {
-    mensagem.setId(UUID.randomUUID());
+  public Mensagem criarMensagem(MensagemRequest request) {
+    var apelido = authenticationService.getApelidoUsuarioLogado();
+    var usuario = usuarioService.consultarUsuarioPorApelido(apelido);
+    var mensagem = Mensagem.builder()
+        .id(UUID.randomUUID())
+        .conteudo(request.getConteudo())
+        .usuario(usuario)
+        .build();
     return mensagemRepository.save(mensagem);
   }
 

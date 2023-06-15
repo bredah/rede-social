@@ -10,6 +10,8 @@ public interface UsuarioService {
 
   Usuario consultarUsuarioPorId(UUID id);
 
+  Usuario consultarUsuarioPorApelido(String apelido);
+
   boolean trocarSenhaUsuario(UUID id, String novaSenha);
 
   void excluirUsuario(UUID id);

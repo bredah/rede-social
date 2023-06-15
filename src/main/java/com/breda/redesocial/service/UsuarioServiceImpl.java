@@ -4,10 +4,14 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.breda.redesocial.exception.UsuarioExistenteException;
+import com.breda.redesocial.model.Role;
 import com.breda.redesocial.model.Usuario;
 import com.breda.redesocial.repository.UsuarioRepository;
 
@@ -20,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
   @Autowired(required = true)
   private BCryptPasswordEncoder passwordEncoder;
 
-  private Map<Long, Usuario> usuarios;
+  private Map<UUID, Usuario> usuarios;
 
   @Override
   public void cadastrarUsuario(Usuario usuario) {
@@ -28,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService {
       throw new UsuarioExistenteException("Usuário já cadastrado");
     }
     usuario.setId(UUID.randomUUID());
-    usuario.setRole("ROLE_USER");
+    usuario.setRole(Role.USER);
     // Criptografar a senha
     String senhaCriptografada = criptografarSenha(usuario.getSenha());
     // Atualizar o campo senha na entidade Usuario com a senha criptografada
@@ -39,6 +43,11 @@ public class UsuarioServiceImpl implements UsuarioService {
   @Override
   public Usuario consultarUsuarioPorId(UUID id) {
     return usuarios.get(id);
+  }
+
+  @Override
+  public Usuario consultarUsuarioPorApelido(String apelido) {
+    return usuarioRepository.findByApelido(apelido).get();
   }
 
   @Override
@@ -80,6 +89,17 @@ public class UsuarioServiceImpl implements UsuarioService {
       return true;
     }
     return false;
+  }
+
+  public String getApelidoUsuarioLogado() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null && authentication.isAuthenticated()) {
+      Object principal = authentication.getPrincipal();
+      if (principal instanceof UserDetails) {
+        return ((UserDetails) principal).getUsername();
+      }
+    }
+    return null;
   }
 
   public boolean existeUsuario(String apelido) {

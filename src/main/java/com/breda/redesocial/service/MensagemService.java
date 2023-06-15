@@ -5,11 +5,12 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.breda.redesocial.dto.MensagemRequest;
 import com.breda.redesocial.model.Mensagem;
 
 public interface MensagemService {
 
-  Mensagem criarMensagem(Mensagem mensagem);
+  Mensagem criarMensagem(MensagemRequest request);
 
   Mensagem buscarMensagem(UUID mensagemId);
 

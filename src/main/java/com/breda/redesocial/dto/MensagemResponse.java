@@ -12,6 +12,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 public class MensagemResponse {
-     private String mensagem;
+    private String mensagem;
     private UUID id;
 }

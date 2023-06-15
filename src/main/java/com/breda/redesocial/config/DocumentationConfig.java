@@ -12,6 +12,6 @@ import io.swagger.v3.oas.annotations.info.Info;
   version = "1.0",
   description = "REST API description...",
   contact = @Contact(name = "Name Surname")))
-public class OpenApiConfig {
+public class DocumentationConfig {
 
 }

@@ -41,9 +41,6 @@ public class UsuarioController {
   // Cadastro de usuário
   @PostMapping()
   public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid Usuario usuario) {
-    // logger.info("cadastrando novo usuario");
-    // usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-    usuario.setId(UUID.randomUUID());
     usuarioService.cadastrarUsuario(usuario);
     return new ResponseEntity<>("Usuário cadastrado com sucesso.", HttpStatus.CREATED);
   }

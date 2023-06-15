@@ -20,11 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.breda.redesocial.dto.MensagemRequest;
 import com.breda.redesocial.dto.MensagemResponse;
 import com.breda.redesocial.model.Mensagem;
 import com.breda.redesocial.service.MensagemService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/mensagens")
@@ -36,10 +35,10 @@ public class MensagemController {
   private MensagemService mensagemService;
 
   @PostMapping()
-  public ResponseEntity<?> criarMensagem(@RequestBody @Valid Mensagem mensagem) {
-    var mensagemCriada = mensagemService.criarMensagem(mensagem);
+  public ResponseEntity<?> criarMensagem(@RequestBody MensagemRequest mensagemRequest) {
+    var mensagemCriada = mensagemService.criarMensagem(mensagemRequest);
     var response = new MensagemResponse("Mensagem criada com sucesso", mensagemCriada.getId());
-    logger.info("Mensagem criada: ID={}", mensagemCriada.getId());
+    logger.info("mensagem adicionada: ID={}", mensagemCriada.getId());
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 

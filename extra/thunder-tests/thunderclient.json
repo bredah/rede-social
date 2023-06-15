@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-05-14T14:06:13.687Z",
-    "modified": "2023-06-12T20:40:42.986Z",
+    "modified": "2023-06-15T22:04:05.680Z",
     "headers": [
       {
         "name": "Accept",
@@ -27,7 +27,14 @@
       "raw": "{\n  \"apelido\": \"test\",\n  \"nome\": \"{{#name}}\",\n  \"email\": \"{{#email}}\",\n  \"senha\": \"Abced1234\"\n}",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "201"
+      }
+    ]
   },
   {
     "_id": "97d46a88-54db-4cfb-b1e8-22f02e8ab5a6",
@@ -94,7 +101,7 @@
     "method": "GET",
     "sortNum": 115000,
     "created": "2023-05-29T21:50:49.077Z",
-    "modified": "2023-06-11T20:24:39.364Z",
+    "modified": "2023-06-15T22:01:21.601Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -108,6 +115,10 @@
       }
     ],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{session}}"
+    },
     "tests": [
       {
         "type": "res-code",
@@ -127,17 +138,17 @@
     "_id": "22a788c8-ad75-4387-8e2d-6067f244d136",
     "colId": "4ad5ca4f-1be1-44c8-8d18-efb596020393",
     "containerId": "a72c7fae-44df-4e94-babc-b30008852310",
-    "name": "publicar mensagem - erro: sem usuario",
+    "name": "publicar mensagem - usuário sem sessão",
     "url": "{{base_url}}/mensagens",
     "method": "POST",
     "sortNum": 90000,
     "created": "2023-05-30T17:46:05.728Z",
-    "modified": "2023-06-11T20:24:08.559Z",
+    "modified": "2023-06-15T21:58:55.816Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"usuario\": \"\",\n  \"conteudo\": \"{{#guid}}\"\n}",
+      "raw": "{\n  \"conteudo\": \"{{#guid}}\"\n}",
       "form": []
     },
     "tests": [
@@ -145,25 +156,7 @@
         "type": "res-code",
         "custom": "",
         "action": "equal",
-        "value": "400"
-      },
-      {
-        "type": "res-body",
-        "custom": "",
-        "action": "isjson",
-        "value": ""
-      },
-      {
-        "type": "json-query",
-        "custom": "json.errors",
-        "action": "count",
-        "value": "1"
-      },
-      {
-        "type": "json-query",
-        "custom": "json.errors[0]",
-        "action": "equal",
-        "value": "usuario não pode estar vazio"
+        "value": "403"
       }
     ]
   },
@@ -176,13 +169,17 @@
     "method": "POST",
     "sortNum": 100000,
     "created": "2023-05-30T17:46:30.832Z",
-    "modified": "2023-06-11T20:24:36.602Z",
+    "modified": "2023-06-15T21:59:15.727Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"usuario\": \"{{#name}}\",\n  \"conteudo\": \"\"\n}",
+      "raw": "{\n  \"conteudo\": \"\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{session}}"
     },
     "tests": [
       {
@@ -220,7 +217,7 @@
     "method": "GET",
     "sortNum": 140000,
     "created": "2023-06-01T20:04:56.680Z",
-    "modified": "2023-06-11T20:26:47.688Z",
+    "modified": "2023-06-15T22:02:55.702Z",
     "headers": [],
     "params": [],
     "tests": [
@@ -235,18 +232,6 @@
         "custom": "",
         "action": "isjson",
         "value": ""
-      },
-      {
-        "type": "json-query",
-        "custom": "json.content",
-        "action": "count",
-        "value": "10"
-      },
-      {
-        "type": "json-query",
-        "custom": "json.numberOfElements",
-        "action": "equal",
-        "value": "10"
       },
       {
         "type": "json-query",
@@ -279,7 +264,7 @@
     "method": "GET",
     "sortNum": 150000,
     "created": "2023-06-03T21:24:56.216Z",
-    "modified": "2023-06-11T20:26:58.353Z",
+    "modified": "2023-06-15T22:04:46.420Z",
     "headers": [],
     "params": [
       {
@@ -308,30 +293,6 @@
       },
       {
         "type": "json-query",
-        "custom": "json.content",
-        "action": "count",
-        "value": "10"
-      },
-      {
-        "type": "json-query",
-        "custom": "json.numberOfElements",
-        "action": "equal",
-        "value": "10"
-      },
-      {
-        "type": "json-query",
-        "custom": "json.size",
-        "action": "equal",
-        "value": "10"
-      },
-      {
-        "type": "json-query",
-        "custom": "json.first",
-        "action": "equal",
-        "value": "false"
-      },
-      {
-        "type": "json-query",
         "custom": "json.last",
         "action": "equal",
         "value": "true"
@@ -342,20 +303,17 @@
     "_id": "8c6a4c53-bb1b-43d1-ab8e-1dd2f0ceff56",
     "colId": "4ad5ca4f-1be1-44c8-8d18-efb596020393",
     "containerId": "a72c7fae-44df-4e94-babc-b30008852310",
-    "name": "remover mensagem - sem imagem",
+    "name": "remover mensagem",
     "url": "{{base_url}}/mensagens/{{mensagemId}}",
     "method": "DELETE",
     "sortNum": 130000,
     "created": "2023-06-04T17:55:42.972Z",
-    "modified": "2023-06-11T20:33:13.478Z",
+    "modified": "2023-06-15T22:02:13.436Z",
     "headers": [],
     "params": [],
     "auth": {
-      "type": "basic",
-      "basic": {
-        "username": "admin",
-        "password": "7db87c79-0340-43f5-ba30-a9c1c3ca6745"
-      }
+      "type": "bearer",
+      "bearer": "{{session}}"
     },
     "tests": [
       {
@@ -406,7 +364,7 @@
     "method": "POST",
     "sortNum": 85000,
     "created": "2023-06-11T19:41:17.923Z",
-    "modified": "2023-06-11T20:24:18.007Z",
+    "modified": "2023-06-15T21:54:38.209Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -422,8 +380,12 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"usuario\": \"{{#name}}\",\n  \"conteudo\": \"{{#guid}}\"\n}",
+      "raw": "{\n  \"conteudo\": \"{{#guid}}\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{session}}"
     },
     "tests": [
       {
@@ -444,7 +406,17 @@
         "action": "setto",
         "value": "{{mensagemId}}"
       }
-    ]
+    ],
+    "preReq": {
+      "runRequests": [
+        {
+          "reqId": "7b5eea60-42d8-4e1b-837e-7cb3d4ffe298",
+          "colId": "4ad5ca4f-1be1-44c8-8d18-efb596020393",
+          "triggerCondition": "run-always",
+          "triggerValue": ""
+        }
+      ]
+    }
   },
   {
     "_id": "e7f4abf0-8cbf-47e4-80a5-24a47b271db6",
@@ -455,7 +427,7 @@
     "method": "PUT",
     "sortNum": 122500,
     "created": "2023-06-11T19:45:42.279Z",
-    "modified": "2023-06-11T20:24:42.673Z",
+    "modified": "2023-06-15T22:01:52.213Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -469,6 +441,10 @@
       }
     ],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{session}}"
+    },
     "tests": [
       {
         "type": "res-code",
@@ -493,7 +469,7 @@
     "method": "PUT",
     "sortNum": 126250,
     "created": "2023-06-11T19:50:24.439Z",
-    "modified": "2023-06-11T20:24:46.016Z",
+    "modified": "2023-06-15T22:01:57.687Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -507,6 +483,10 @@
       }
     ],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{session}}"
+    },
     "tests": [
       {
         "type": "res-code",
@@ -527,11 +507,11 @@
     "colId": "4ad5ca4f-1be1-44c8-8d18-efb596020393",
     "containerId": "f1ebd796-cd65-4c77-89da-a442d2ae193e",
     "name": "login",
-    "url": "{{base_url}}/login",
+    "url": "{{base_url}}/auth",
     "method": "POST",
     "sortNum": 45000,
     "created": "2023-06-12T20:09:52.327Z",
-    "modified": "2023-06-12T20:41:16.217Z",
+    "modified": "2023-06-15T19:45:27.462Z",
     "headers": [
       {
         "name": "Accept",
@@ -550,6 +530,25 @@
       "raw": "{\n  \"apelido\": \"test\",\n  \"senha\": \"Abced1234\"\n}",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.token",
+        "action": "setto",
+        "value": "{{session}}"
+      }
+    ]
   }
 ]

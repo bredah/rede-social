@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.breda.redesocial.model.Role;
 import com.breda.redesocial.model.Usuario;
 import com.breda.redesocial.repository.UsuarioRepository;
 
@@ -40,7 +41,7 @@ public class UsuarioServiceTest {
 
     @Test
     public void testTrocarSenhaUsuario() {
-        UUID id = UUID.randomUUID();
+
         String novaSenha = "4321dcbA";
 
         var usuario = criarUsuario();
@@ -91,7 +92,7 @@ public class UsuarioServiceTest {
                 .nome("John Doe")
                 .senha("Abce1234")
                 .bloqueado(false)
-                .role("USER")
+                .role(Role.USER)
                 .build();
     }
 

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.breda.redesocial.model.Role;
 import com.breda.redesocial.model.Usuario;
 
 @DataJpaTest
@@ -80,7 +81,7 @@ class UsuarioRepositoryIT {
         .nome("John Doe")
         .senha("Abce1234")
         .bloqueado(false)
-        .role("USER")
+        .role(Role.USER)
         .build();
   }
 

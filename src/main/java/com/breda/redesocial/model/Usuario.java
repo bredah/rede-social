@@ -1,11 +1,19 @@
 package com.breda.redesocial.model;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -21,9 +29,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class Usuario implements UserDetails {
   @Id
-  @GenericGenerator(name = "uuid", strategy = "uuid4")
+  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
   @NotEmpty(message = "apelido é obrigatório")
   @Column(nullable = false, unique = true)
@@ -38,13 +46,48 @@ public class Usuario {
   @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",
       message = "senha deve conter letras e números")
   private String senha;
-  @Column(nullable = false)
-  private String role;
+  @Enumerated(EnumType.STRING)
+  private Role role;
   private boolean bloqueado;
 
   public Usuario(String apelido) {
     this.apelido = apelido;
     this.bloqueado = false;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority(role.name()));
+  }
+
+  @Override
+  public String getPassword() {
+    return senha;
+  }
+
+  @Override
+  public String getUsername() {
+    return apelido;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return !bloqueado;
   }
 
 }
